@@ -2,6 +2,7 @@ using System;
 using EasyCargo.Api.Data;
 using EasyCargo.Api.Repositories.Implementations;
 using EasyCargo.Api.Repositories.Interfaces;
+using MassTransit;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,20 @@ using Microsoft.Extensions.Hosting;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddMassTransit(x =>
+{
+    x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(config =>
+    {
+        config.UseHealthCheck(provider);
+        config.Host(new Uri("rabbitmq://localhost"), h =>
+        {
+            h.Username("guest");
+            h.Password("guest");
+        });
+    }));
+});
+builder.Services.AddMassTransitHostedService();
 
 builder.Services.AddControllers();
 builder.Services.AddApiVersioning(config =>
@@ -28,7 +43,6 @@ builder.Services.AddDbContext<AppDbContext>(options => { options.UseNpgsql(build
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
-
 
 var app = builder.Build();
 

@@ -1,14 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using AutoMapper;
 using EasyCargo.Api.Queries.Domains;
 using EasyCargo.Api.Queries.Queries;
 using EasyCargo.Api.Queries.Repositories.Interface;
-using EasyCargo.Api.Queries.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Entities;
+using Shared.Model;
 using Order = EasyCargo.Api.Queries.Domains.Order;
 
 namespace EasyCargo.Api.Queries.Controllers
@@ -18,14 +16,16 @@ namespace EasyCargo.Api.Queries.Controllers
     public class OrderController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly IOrderWriteRepository _orderWriteRepository;
 
-        public OrderController(IMediator mediator)
+        public OrderController(IMediator mediator, IOrderWriteRepository orderWriteRepository)
         {
             _mediator = mediator;
+            _orderWriteRepository = orderWriteRepository;
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<OrderResponse>> GetById(string id)
+        [HttpGet("{id:guid}")]
+        public async Task<ActionResult<OrderResponse>> GetById(Guid id)
         {
             var order = await _mediator.Send(new GetOrderById(id));
             return Ok(order);
@@ -44,21 +44,22 @@ namespace EasyCargo.Api.Queries.Controllers
             {
                 ShippingProvider = 1,
                 CargoKey = "123",
-                IsShipped = false
+                IsShipped = false,
             };
-            await order.SaveAsync();
 
+            var products = new List<Product>();
             var product = new Product
             {
+                Id = Guid.NewGuid(),
                 Width = 12,
                 Height = 2,
                 Deci = 12,
                 Depth = 2,
                 Qty = 12
             };
-            await product.SaveAsync();
-
-            await order.Products?.AddAsync(product)!;
+            products.Add(product);
+            order.Products = products;
+            await _orderWriteRepository.CreateAsync(order);
         }
     }
 }

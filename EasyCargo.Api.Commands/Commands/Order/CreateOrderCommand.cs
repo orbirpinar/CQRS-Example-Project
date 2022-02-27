@@ -1,6 +1,6 @@
 using EasyCargo.Api.Requests;
-using EasyCargo.Api.Responses;
 using MediatR;
+using Shared.Model;
 
 namespace EasyCargo.Api.Commands.Order
 {

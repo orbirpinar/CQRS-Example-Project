@@ -1,15 +1,15 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace EasyCargo.Api.Queries.Responses
+namespace Shared.Model
 {
     public class OrderResponse
     {
         
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         public int ShippingProvider { get; set; }
         public bool IsShipped { get; set; }
         public string? CargoKey { get; set; }
-        public List<ProductResponse>? Products { get; set; }
+        public IEnumerable<ProductResponse>? Products { get; set; }
     }
-} 
+}

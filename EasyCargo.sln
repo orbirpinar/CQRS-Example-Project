@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyCargo.Api.Commands", "E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyCargo.Api.Queries", "EasyCargo.Api.Queries\EasyCargo.Api.Queries.csproj", "{B424ABD7-9604-4051-A0B7-F80D00160AB0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared.Model", "Shared.Model\Shared.Model.csproj", "{966E300F-EBA8-4172-8011-A1D837399661}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{B424ABD7-9604-4051-A0B7-F80D00160AB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B424ABD7-9604-4051-A0B7-F80D00160AB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B424ABD7-9604-4051-A0B7-F80D00160AB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{966E300F-EBA8-4172-8011-A1D837399661}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{966E300F-EBA8-4172-8011-A1D837399661}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{966E300F-EBA8-4172-8011-A1D837399661}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{966E300F-EBA8-4172-8011-A1D837399661}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

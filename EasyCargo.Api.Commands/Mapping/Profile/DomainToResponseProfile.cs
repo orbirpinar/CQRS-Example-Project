@@ -1,5 +1,5 @@
 using EasyCargo.Api.Domains;
-using EasyCargo.Api.Responses;
+using Shared.Model;
 
 namespace EasyCargo.Api.Mapping.Profile
 {

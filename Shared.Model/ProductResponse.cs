@@ -1,6 +1,6 @@
 using System;
 
-namespace EasyCargo.Api.Responses
+namespace Shared.Model
 {
     public class ProductResponse
     {

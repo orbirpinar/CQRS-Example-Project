@@ -1,7 +1,10 @@
 using System;
-using System.Threading.Tasks;
+using EasyCargo.Api.Queries.Consumer;
 using EasyCargo.Api.Queries.Repositories.Implementation;
 using EasyCargo.Api.Queries.Repositories.Interface;
+using EasyCargo.Api.Queries.Settings;
+using GreenPipes;
+using MassTransit;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -11,13 +14,33 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
-using MongoDB.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
+
+builder.Services.AddMassTransit(x =>
+{
+    x.AddConsumers(typeof(OrderConsumer).Assembly);
+    x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
+    {
+        cfg.Host(new Uri("rabbitmq://localhost"), h =>
+        {
+            h.Username("guest");
+            h.Password("guest");
+        });
+        cfg.ReceiveEndpoint("orderQueue", ep =>
+        {
+            ep.PrefetchCount = 16;
+            ep.UseMessageRetry(r => r.Interval(2, 100));
+            ep.ConfigureConsumer<OrderConsumer>(provider);
+        });
+    }));
+});
+builder.Services.AddMassTransitHostedService();
+builder.Services.AddScoped<OrderConsumer>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -27,14 +50,11 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
 
 
-Task.Run(async () =>
-    {
-        await DB.InitAsync("EasyCargoReadDb",
-            MongoClientSettings.FromConnectionString(builder.Configuration.GetConnectionString("MongoDbSettings")));
-    })
-    .GetAwaiter()
-    .GetResult();
-builder.Services.AddScoped<IOrderReadRepository, OrderRepository>();
+builder.Services.AddSingleton<IMongoClient>(_ => new MongoClient(builder.Configuration.GetConnectionString("MongoDbSettings")));
+
+builder.Services.AddScoped<IOrderReadRepository, OrderReadRepository>();
+builder.Services.AddScoped<IOrderWriteRepository, OrderWriteRepository>();
+
 
 var app = builder.Build();
 

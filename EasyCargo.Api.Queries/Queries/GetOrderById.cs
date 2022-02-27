@@ -1,14 +1,14 @@
 using System;
-using EasyCargo.Api.Queries.Responses;
 using MediatR;
+using Shared.Model;
 
 namespace EasyCargo.Api.Queries.Queries
 {
     public class GetOrderById: IRequest<OrderResponse>
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
 
-        public GetOrderById(string id)
+        public GetOrderById(Guid id)
         {
             Id = id;
         }

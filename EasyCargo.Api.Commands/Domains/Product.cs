@@ -4,7 +4,7 @@ namespace EasyCargo.Api.Domains
 {
     public class Product
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         public float Width { get; set; }
         public float Height { get; set; }
         public float Depth { get; set; }
