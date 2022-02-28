@@ -11,19 +11,19 @@ using Shared.Model;
 
 namespace EasyCargo.Api.Queries.Handlers
 {
-    public class GetAllOrdersHandler : IRequestHandler<GetAllOrders,IEnumerable<OrderResponse>>
+    public class GetAllOrdersHandler : IRequestHandler<GetAllOrders,List<OrderResponse>>
     {
         private readonly IOrderReadRepository _repository;
 
-        public GetAllOrdersHandler(IOrderReadRepository repository, IMapper mapper)
+        public GetAllOrdersHandler(IOrderReadRepository repository)
         {
             _repository = repository;
         }
 
-        public async Task<IEnumerable<OrderResponse>> Handle(GetAllOrders request, CancellationToken cancellationToken)
+        public async Task<List<OrderResponse>> Handle(GetAllOrders request, CancellationToken cancellationToken)
         {
             var  orders = await _repository.GetAll();
-            return orders.Select(order => order.DomainToResponse());
+            return orders.Select(order => order.DomainToResponse()).ToList()!;
         }
     }
 }

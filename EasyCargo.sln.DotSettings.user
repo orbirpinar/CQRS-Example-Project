@@ -1,0 +1,17 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=3cf9660b_002D1b94_002D4bd1_002Da429_002Db3a27d6cb7f3/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GetById_WhenGivenIdIsValid_ShouldReturnOkWithOrderResponse" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::721540FD-B0D4-4DFE-BF90-08F4F594710B::net6.0::EasyCargo.Api.Queries.Tests.Controllers.OrderControllerTests.GetById_WhenGivenIdIsValid_ShouldReturnOkWithOrderResponse&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=54d7a2ba_002Dc85d_002D4bc5_002Db148_002D6e3a16cf4415/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Handle_WhenCalled_ShouldReturnListOfOrders #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::721540FD-B0D4-4DFE-BF90-08F4F594710B::net6.0::EasyCargo.Api.Queries.Tests.Handlers.GetAllOrdersHandlerTests.Handle_WhenCalled_ShouldReturnListOfOrders&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::721540FD-B0D4-4DFE-BF90-08F4F594710B::net6.0::EasyCargo.Api.Queries.Tests.Handlers.GetOrderByIdHandlerTests.Handle_GivenOrderIdValid_ShouldReturnOrder&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::721540FD-B0D4-4DFE-BF90-08F4F594710B::net6.0::EasyCargo.Api.Queries.Tests.Handlers.GetOrderByIdHandlerTests.Handle_GivenOrderIdNotInDb_ShouldReturnNull&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::721540FD-B0D4-4DFE-BF90-08F4F594710B::net6.0::EasyCargo.Api.Queries.Tests.Handlers.GetAllOrdersHandlerTests.Handle_WhenNoOrderInDb_ShouldReturnEmptyList&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::721540FD-B0D4-4DFE-BF90-08F4F594710B::net6.0::EasyCargo.Api.Queries.Tests.Controllers.OrderControllerTests.GetById_WhenGivenIdIsValid_ShouldReturnOkWithOrderResponse&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	
+	</wpf:ResourceDictionary>

@@ -4,7 +4,7 @@ using Shared.Model;
 
 namespace EasyCargo.Api.Queries.Queries
 {
-    public class GetAllOrders: IRequest<IEnumerable<OrderResponse>>
+    public class GetAllOrders: IRequest<List<OrderResponse>>
     {
     }
 }
