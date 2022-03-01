@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
 using EasyCargo.Api.Queries.Domains;
 using EasyCargo.Api.Queries.Handlers;
 using EasyCargo.Api.Queries.Queries;
 using EasyCargo.Api.Queries.Repositories.Interface;
+using EasyCargo.Api.Queries.Tests.Mapping;
 using FluentAssertions;
 using Moq;
 using Shared.Model;
@@ -13,14 +15,15 @@ using Xunit;
 
 namespace EasyCargo.Api.Queries.Tests.Handlers
 {
-    public class GetOrderByIdHandlerTests
+    public sealed class GetOrderByIdHandlerTests: MapperConfigurationTest
     {
         private readonly GetOrderByIdHandler _sut;
-        private readonly Mock<IOrderReadRepository> _mock = new();
+        private readonly Mock<IOrderReadRepository> _mockRepo = new();
+        
 
         public GetOrderByIdHandlerTests()
         {
-            _sut = new GetOrderByIdHandler(_mock.Object);
+            _sut = new GetOrderByIdHandler(_mockRepo.Object,GetMapperConfiguration());
         }
 
         [Fact]
@@ -28,7 +31,7 @@ namespace EasyCargo.Api.Queries.Tests.Handlers
         {
             // Arrange
             var id = Guid.NewGuid();
-            _mock.Setup(repo => repo.GetById(id)).ReturnsAsync(GetOrderTest(id))
+            _mockRepo.Setup(repo => repo.GetById(id)).ReturnsAsync(GetOrderTest(id))
                 .As<OrderResponse>();
 
             //Act
@@ -46,7 +49,7 @@ namespace EasyCargo.Api.Queries.Tests.Handlers
             
             // Arrange
             var id = Guid.NewGuid();
-            _mock.Setup(repo => repo.GetById(id)).ReturnsAsync(GetOrderTest(id))
+            _mockRepo.Setup(repo => repo.GetById(id)).ReturnsAsync(GetOrderTest(id))
                 .As<OrderResponse>();
 
             //Act

@@ -12,7 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Queries", "Queries", "{7428
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyCargo.Api.Commands.Tests", "EasyCargo.Api.Commands.Tests\EasyCargo.Api.Commands.Tests.csproj", "{BA2F459C-EAB8-4138-BBE6-91AE247286FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyCargo.Api.Queries.Tests", "EasyCargo.Api.Queries.Tests\EasyCargo.Api.Queries.Tests.csproj", "{721540FD-B0D4-4DFE-BF90-08F4F594710B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyCargo.Api.Queries.Unit.Tests", "EasyCargo.Api.Queries.Unit.Tests\EasyCargo.Api.Queries.Unit.Tests.csproj", "{721540FD-B0D4-4DFE-BF90-08F4F594710B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
