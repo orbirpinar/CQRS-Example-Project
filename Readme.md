@@ -14,4 +14,4 @@ and then run both projects
 
 
 
-![Diagram](screenshots/cqrs.png)
+![Diagram](screenshots/cqrs_not_transparent.png)
