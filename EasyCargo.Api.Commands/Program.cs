@@ -44,7 +44,8 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddSingleton<IProducer, Producer>();
+builder.Services.AddSingleton<IOrderProducer, OrderProducer>();
+builder.Services.AddSingleton<IProductProducer, ProductProducer>();
 
 var app = builder.Build();
 

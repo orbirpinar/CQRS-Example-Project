@@ -14,14 +14,14 @@ namespace EasyCargo.Api.Handlers.Order
     {
         private readonly IMapper _mapper;
         private readonly IOrderRepository _repository;
-        private readonly IProducer _producer;
+        private readonly IOrderProducer _orderProducer;
 
 
-        public UpdateOrderHandler(IOrderRepository repository, IMapper mapper, IProducer producer)
+        public UpdateOrderHandler(IOrderRepository repository, IMapper mapper, IOrderProducer orderProducer)
         {
             _repository = repository;
             _mapper = mapper;
-            _producer = producer;
+            _orderProducer = orderProducer;
         }
 
         public async Task<bool> Handle(UpdateOrderCommand request, CancellationToken cancellationToken)
@@ -32,7 +32,7 @@ namespace EasyCargo.Api.Handlers.Order
             
             var orderResponse = _mapper.Map<OrderResponse>(request.OrderRequest);
             orderResponse.Id = request.OrderId;
-            await _producer.SendAsync(orderResponse,cancellationToken,EventName.OrderUpdated);
+            await _orderProducer.SendAsync(orderResponse,cancellationToken,EventName.OrderUpdated);
             
             return response;
         }

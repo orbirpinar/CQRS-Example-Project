@@ -7,7 +7,7 @@ namespace EasyCargo.Api.Repositories.Interfaces
 {
     public interface IProductRepository
     {
-        Task<bool> AttachAsync(Guid orderId, Product product);
+        Task<Product> AttachAsync(Guid orderId, Product product);
         Task SaveChangesAsync();
     }
 }

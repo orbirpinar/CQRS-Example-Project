@@ -20,7 +20,7 @@ namespace EasyCargo.Api.Commands.Tests.Handlers
     {
         private readonly UpdateOrderHandler _sut;
         private readonly Mock<IOrderRepository> _mockRepo = new();
-        private readonly Mock<IProducer> _mockProducer = new();
+        private readonly Mock<IOrderProducer> _mockProducer = new();
         private readonly IMapper _mapper;
 
 

@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using EasyCargo.Api.Commands.Order;
 using EasyCargo.Api.Requests;
 using MediatR;
@@ -19,9 +20,9 @@ namespace EasyCargo.Api.Controllers
         }
 
         [HttpPost("orders/{orderId:guid}/products/attach")]
-        public ActionResult<OrderResponse?> Attach([FromBody] AttachProductRequest productRequest, Guid orderId)
+        public async Task<ActionResult<OrderResponse?>> Attach([FromBody] AttachProductRequest productRequest, Guid orderId)
         {
-            var response = _mediator.Send(new AttachProductCommand(orderId, productRequest));
+            var response = await _mediator.Send(new AttachProductCommand(orderId, productRequest));
             return Ok(response);
         }
     }

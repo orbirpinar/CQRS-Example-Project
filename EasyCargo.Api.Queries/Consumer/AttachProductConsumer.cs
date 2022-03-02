@@ -7,23 +7,23 @@ using Shared.Model;
 
 namespace EasyCargo.Api.Queries.Consumer
 {
-    public class UpdateOrderConsumer: IConsumer<OrderResponse>
+    public class AttachProductConsumer: IConsumer<ConsumingProduct>
     {
 
         private readonly IOrderWriteRepository _orderWriteRepository;
         private readonly IMapper _mapper;
 
-        public UpdateOrderConsumer(IOrderWriteRepository orderWriteRepository, IMapper mapper)
+        public AttachProductConsumer(IOrderWriteRepository orderWriteRepository, IMapper mapper)
         {
             _orderWriteRepository = orderWriteRepository;
             _mapper = mapper;
         }
 
-        public async Task Consume(ConsumeContext<OrderResponse> context)
+        public async Task Consume(ConsumeContext<ConsumingProduct> context)
         {
-            var orderResponse = context.Message;
-            var order = _mapper.Map<Order>(orderResponse);
-            await _orderWriteRepository.UpdateAsync(order);
+            ConsumingProduct consumingProduct = context.Message;
+            var product = _mapper.Map<Product>(consumingProduct);
+            await _orderWriteRepository.AttachProductAsync(product,consumingProduct.OrderId);
         }
     }
 }

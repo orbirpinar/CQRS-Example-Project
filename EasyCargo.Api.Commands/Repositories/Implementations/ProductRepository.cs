@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using EasyCargo.Api.Data;
 using EasyCargo.Api.Domains;
@@ -17,13 +18,15 @@ namespace EasyCargo.Api.Repositories.Implementations
             _context = context;
         }
 
-        public async Task<bool> AttachAsync(Guid orderId, Product product)
+        public async Task<Product> AttachAsync(Guid orderId, Product product)
         {
             var order = await _context.Orders.FindAsync(orderId);
             if (order == null) throw new BadHttpRequestException("Entity Not Found");
             order.Products = new List<Product>();
+            order.Products.Add(product);
             _context.Orders.Update(order);
-            return true;
+            await _context.SaveChangesAsync();
+            return order.Products.Last();
         }
 
         public async Task SaveChangesAsync()

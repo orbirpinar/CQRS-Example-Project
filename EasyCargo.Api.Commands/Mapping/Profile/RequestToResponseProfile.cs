@@ -8,6 +8,7 @@ namespace EasyCargo.Api.Mapping.Profile
         public RequestToResponseProfile()
         {
             CreateMap<UpdateOrderRequest, OrderResponse>();
+            CreateMap<AttachProductRequest, ConsumingProduct>();
         }
     }
 }

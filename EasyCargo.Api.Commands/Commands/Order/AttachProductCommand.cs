@@ -1,11 +1,10 @@
 using System;
 using EasyCargo.Api.Requests;
 using MediatR;
-using Shared.Model;
 
 namespace EasyCargo.Api.Commands.Order
 {
-    public class AttachProductCommand: IRequest<OrderResponse>
+    public class AttachProductCommand: IRequest<Unit>
     {
 
         public AttachProductCommand(Guid orderId,AttachProductRequest productRequest)

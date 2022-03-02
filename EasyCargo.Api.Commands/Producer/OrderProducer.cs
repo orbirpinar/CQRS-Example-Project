@@ -7,11 +7,11 @@ using Shared.Model;
 
 namespace EasyCargo.Api.Producer
 {
-    public class Producer: IProducer
+    public class OrderProducer: IOrderProducer
     {
         private readonly IBus _bus;
 
-        public Producer(IBus bus)
+        public OrderProducer(IBus bus)
         {
             _bus = bus;
         }

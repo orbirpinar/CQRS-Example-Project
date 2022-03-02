@@ -11,6 +11,7 @@ namespace EasyCargo.Api.Queries.Mapping
         {
             CreateMap<ProductResponse, Product>();
             CreateMap<OrderResponse, Order>();
+            CreateMap<ConsumingProduct, Product>();
         }
     }
 }

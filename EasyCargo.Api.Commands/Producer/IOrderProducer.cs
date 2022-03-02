@@ -4,9 +4,9 @@ using Shared.Model;
 
 namespace EasyCargo.Api.Producer
 {
-    public interface IProducer
+    public interface IOrderProducer
     {
         Task SendAsync(OrderResponse orderResponse,CancellationToken cancellationToken,string eventName);
-        
+
     }
 }
