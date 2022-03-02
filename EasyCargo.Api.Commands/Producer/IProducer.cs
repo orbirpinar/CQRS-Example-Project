@@ -6,6 +6,7 @@ namespace EasyCargo.Api.Producer
 {
     public interface IProducer
     {
-        Task SendAsync(OrderResponse orderResponse,CancellationToken cancellationToken);
+        Task SendAsync(OrderResponse orderResponse,CancellationToken cancellationToken,string eventName);
+        
     }
 }

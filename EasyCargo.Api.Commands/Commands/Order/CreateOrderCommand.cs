@@ -8,9 +8,9 @@ namespace EasyCargo.Api.Commands.Order
     {
         public CreateOrderCommand(CreateOrderRequest request)
         {
-            _request = request;
+            Request = request;
         }
 
-        public CreateOrderRequest _request { get; }
+        public CreateOrderRequest Request { get; }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using EasyCargo.Api.Data;
+using EasyCargo.Api.Producer;
 using EasyCargo.Api.Repositories.Implementations;
 using EasyCargo.Api.Repositories.Interfaces;
 using MassTransit;
@@ -19,7 +20,6 @@ builder.Services.AddMassTransit(x =>
 {
     x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(config =>
     {
-        config.UseHealthCheck(provider);
         config.Host(new Uri("rabbitmq://localhost"), h =>
         {
             h.Username("guest");
@@ -43,6 +43,8 @@ builder.Services.AddDbContext<AppDbContext>(options => { options.UseNpgsql(build
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddSingleton<IProducer, Producer>();
 
 var app = builder.Build();
 

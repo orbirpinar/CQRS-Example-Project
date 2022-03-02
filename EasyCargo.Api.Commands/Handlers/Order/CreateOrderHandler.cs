@@ -28,12 +28,12 @@ namespace EasyCargo.Api.Handlers.Order
 
         public async Task<OrderResponse?> Handle(CreateOrderCommand req, CancellationToken cancellationToken)
         {
-            CreateOrderRequest request = req._request;
+            CreateOrderRequest request = req.Request;
             var order = _mapper.Map<Domains.Order>(request);
             var response = await _repository.CreateAsync(order);
             await _repository.SaveChangesAsync();
             var orderResponse =  _mapper.Map<OrderResponse>(response);
-            await _producer.SendAsync(orderResponse, cancellationToken);
+            await _producer.SendAsync(orderResponse, cancellationToken,EventName.OrderCreated);
             return orderResponse;
         }
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using EasyCargo.Api.Data;
 using EasyCargo.Api.Domains;
@@ -20,20 +21,6 @@ namespace EasyCargo.Api.Repositories.Implementations
             _context = context;
         }
 
-        public async Task<IEnumerable<Order>> FindAllAsync()
-        {
-            return await _context.Orders
-                .Include(o => o.Products)
-                .ToListAsync();
-        }
-
-        public async Task<Order?> FindByIdAsync(Guid id)
-        {
-            return await _context.Orders
-                .Include(o => o.Products)
-                .Where(o => o.Id == id)
-                .FirstOrDefaultAsync();
-        }
 
         public async Task<Order?> CreateAsync(Order order)
         {
@@ -44,7 +31,10 @@ namespace EasyCargo.Api.Repositories.Implementations
         public async Task<bool> UpdateAsync(Order order, Guid id)
         {
             var existingOrder = await _context.Orders.FindAsync(id);
-            if (existingOrder == null) return false;
+            if (existingOrder == null)
+            {
+                throw new Exception("Entity not found");
+            }
             existingOrder.CargoKey = order.CargoKey;
             existingOrder.IsShipped = order.IsShipped;
             existingOrder.ShippingProvider = order.ShippingProvider;

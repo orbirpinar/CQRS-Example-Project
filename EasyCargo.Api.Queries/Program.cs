@@ -23,7 +23,8 @@ BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
 
 builder.Services.AddMassTransit(x =>
 {
-    x.AddConsumers(typeof(OrderConsumer).Assembly);
+    x.AddConsumers(typeof(CreateOrderConsumer).Assembly);
+    x.AddConsumers(typeof(UpdateOrderConsumer).Assembly);
     x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
     {
         cfg.Host(new Uri("rabbitmq://localhost"), h =>
@@ -31,16 +32,22 @@ builder.Services.AddMassTransit(x =>
             h.Username("guest");
             h.Password("guest");
         });
-        cfg.ReceiveEndpoint("orderQueue", ep =>
+        cfg.ReceiveEndpoint("orderCreated", ep =>
         {
             ep.PrefetchCount = 16;
             ep.UseMessageRetry(r => r.Interval(2, 100));
-            ep.ConfigureConsumer<OrderConsumer>(provider);
+            ep.ConfigureConsumer<CreateOrderConsumer>(provider);
+        });
+        
+        cfg.ReceiveEndpoint("orderUpdated", ep =>
+        {
+            ep.PrefetchCount = 16;
+            ep.UseMessageRetry(r => r.Interval(2, 100));
+            ep.ConfigureConsumer<UpdateOrderConsumer>(provider);
         });
     }));
 });
 builder.Services.AddMassTransitHostedService();
-builder.Services.AddScoped<OrderConsumer>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

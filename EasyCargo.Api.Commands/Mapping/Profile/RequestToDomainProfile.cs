@@ -10,6 +10,7 @@ namespace EasyCargo.Api.Mapping.Profile
             CreateMap<CreateProductRequest, Product>();
             CreateMap<CreateOrderRequest, Order>();
             CreateMap<UpdateOrderRequest, Order>();
+            CreateMap<AttachProductRequest, Product>();
         }
     }
 }

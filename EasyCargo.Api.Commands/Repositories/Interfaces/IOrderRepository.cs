@@ -7,8 +7,6 @@ namespace EasyCargo.Api.Repositories.Interfaces
 {
     public interface IOrderRepository
     {
-        Task<IEnumerable<Order>> FindAllAsync();
-        Task<Order?> FindByIdAsync(Guid id);
 
         Task<Order?> CreateAsync(Order order);
 

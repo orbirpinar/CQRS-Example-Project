@@ -35,7 +35,7 @@ namespace EasyCargo.Api.Commands.Tests.Handlers
             _mockRepo.Setup(repo => repo.CreateAsync(It.IsAny<Domains.Order>()))
                 .ReturnsAsync(GetOrder(id));
             _mockRepo.Setup(repo => repo.SaveChangesAsync());
-            _mockProducer.Setup(x => x.SendAsync(GetOrderResponse(id), CancellationToken.None));
+            _mockProducer.Setup(x => x.SendAsync(GetOrderResponse(id), CancellationToken.None,EventName.OrderCreated));
 
 
             // Act
@@ -44,6 +44,8 @@ namespace EasyCargo.Api.Commands.Tests.Handlers
             // Assert
             result.Should().BeOfType<OrderResponse>();
             result.Should().BeEquivalentTo(GetOrderResponse(id));
+            _mockProducer.Verify(x => x.SendAsync(It.Is<OrderResponse>(response => response.IsShipped.Equals(false)), 
+                It.IsAny<CancellationToken>(),EventName.OrderCreated),Times.Once);
         }
 
         private static Domains.Order GetOrder(Guid id)

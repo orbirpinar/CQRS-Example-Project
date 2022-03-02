@@ -16,10 +16,10 @@ namespace EasyCargo.Api.Producer
             _bus = bus;
         }
 
-        public async Task SendAsync(OrderResponse orderResponse, CancellationToken cancellationToken)
+        public async Task SendAsync(OrderResponse orderResponse, CancellationToken cancellationToken,string eventName)
         {
-            var endpoint = await _bus.GetSendEndpoint(new Uri("queue:orderQueue"));
-            await _bus.Send(endpoint, cancellationToken);
+            var endpoint = await _bus.GetSendEndpoint(new Uri($"queue:{eventName}"));
+            await endpoint.Send(orderResponse, cancellationToken);
         }
     }
 }

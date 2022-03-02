@@ -8,21 +8,18 @@ using Shared.Model;
 
 namespace EasyCargo.Api.Queries.Consumer
 {
-    public class OrderConsumer : IConsumer<OrderResponse>
+    public class CreateOrderConsumer : IConsumer<OrderResponse>
     {
         private readonly IOrderWriteRepository _orderWriteRepository;
         private readonly IMapper _mapper;
 
 
-        public OrderConsumer(IOrderWriteRepository orderWriteRepository, IMapper mapper)
+        public CreateOrderConsumer(IOrderWriteRepository orderWriteRepository, IMapper mapper)
         {
             _orderWriteRepository = orderWriteRepository;
             _mapper = mapper;
         }
 
-        public OrderConsumer()
-        {
-        }
 
         public async Task Consume(ConsumeContext<OrderResponse> context)
         {

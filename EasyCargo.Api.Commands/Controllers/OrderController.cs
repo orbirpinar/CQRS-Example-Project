@@ -10,15 +10,14 @@ namespace EasyCargo.Api.Controllers
 {
     [Route("api/v1/orders")]
     [ApiController]
-    public class OrdersController : ControllerBase
+    public class OrderController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public OrdersController(IMediator mediator)
+        public OrderController(IMediator mediator)
         {
             _mediator = mediator;
         }
-
 
 
         [HttpPost]
@@ -30,8 +29,7 @@ namespace EasyCargo.Api.Controllers
         [HttpPut("{id:guid}")]
         public async Task<IActionResult> Update([FromBody] UpdateOrderRequest updateOrderRequest, Guid id)
         {
-            var response = await _mediator.Send(new UpdateOrderCommand(id, updateOrderRequest));
-            if (response is false) return NotFound();
+            await _mediator.Send(new UpdateOrderCommand(id, updateOrderRequest));
             return Ok();
         }
     }
