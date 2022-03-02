@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Commands", "Commands", "{5F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Queries", "Queries", "{7428C7F3-DCBB-4A5C-8D93-717031A4C892}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyCargo.Api.Commands.Tests", "EasyCargo.Api.Commands.Tests\EasyCargo.Api.Commands.Tests.csproj", "{BA2F459C-EAB8-4138-BBE6-91AE247286FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyCargo.Api.Commands.Unit.Tests", "EasyCargo.Api.Commands.Unit.Tests\EasyCargo.Api.Commands.Unit.Tests.csproj", "{BA2F459C-EAB8-4138-BBE6-91AE247286FA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyCargo.Api.Queries.Unit.Tests", "EasyCargo.Api.Queries.Unit.Tests\EasyCargo.Api.Queries.Unit.Tests.csproj", "{721540FD-B0D4-4DFE-BF90-08F4F594710B}"
 EndProject

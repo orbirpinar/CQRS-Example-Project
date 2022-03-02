@@ -12,7 +12,7 @@ namespace EasyCargo.Api.Commands.Order
             OrderRequest = request;
         }
 
-        public Guid OrderId { get; set; }
-        public UpdateOrderRequest OrderRequest { get; set; }
+        public Guid OrderId { get; }
+        public UpdateOrderRequest OrderRequest { get; }
     }
 }

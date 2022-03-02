@@ -20,12 +20,15 @@ namespace EasyCargo.Api.Queries.Consumer
             _mapper = mapper;
         }
 
-        public Task Consume(ConsumeContext<OrderResponse> context)
+        public OrderConsumer()
+        {
+        }
+
+        public async Task Consume(ConsumeContext<OrderResponse> context)
         {
             var orderResponse = context.Message;
             var order = _mapper.Map<Order>(orderResponse);
-            _orderWriteRepository.CreateAsync(order);
-            return Task.CompletedTask;
+            await _orderWriteRepository.CreateAsync(order);
         }
     }
 }

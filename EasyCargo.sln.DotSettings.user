@@ -1,4 +1,7 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a30062dc_002Df0cf_002D4e2f_002D9528_002D00edb5d048d4/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from &amp;lt;Queries&amp;gt;\&amp;lt;EasyCargo.Api.Queries.Unit.Tests&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;Project Location="/home/orhan/dotnet/EasyCargo/EasyCargo.Api.Queries.Unit.Tests" Presentation="&amp;lt;Queries&amp;gt;\&amp;lt;EasyCargo.Api.Queries.Unit.Tests&amp;gt;" /&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=8cad2039_002D082d_002D4327_002Dbd7f_002Dbe7b33c86773/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Handle_WhenMethodCalled_ShouldReturnCreateOrder" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::BA2F459C-EAB8-4138-BBE6-91AE247286FA::net6.0::EasyCargo.Api.Commands.Tests.Handlers.CreateOrderHandlerTests.Handle_WhenMethodCalled_ShouldReturnCreateOrder&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::BA2F459C-EAB8-4138-BBE6-91AE247286FA::net6.0::EasyCargo.Api.Commands.Tests.Handlers.UpdateOrderHandlerTests.Handle_WhenGivenIdExists_ShouldReturnTrue&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
