@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyCargo.Api.Commands.Unit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyCargo.Api.Queries.Unit.Tests", "EasyCargo.Api.Queries.Unit.Tests\EasyCargo.Api.Queries.Unit.Tests.csproj", "{721540FD-B0D4-4DFE-BF90-08F4F594710B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyCargo.ApiGateway", "EasyCargo.ApiGateway\EasyCargo.ApiGateway.csproj", "{05539C6A-AFD7-4A48-BD4F-1EF6FDAE1080}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{721540FD-B0D4-4DFE-BF90-08F4F594710B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{721540FD-B0D4-4DFE-BF90-08F4F594710B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{721540FD-B0D4-4DFE-BF90-08F4F594710B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05539C6A-AFD7-4A48-BD4F-1EF6FDAE1080}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05539C6A-AFD7-4A48-BD4F-1EF6FDAE1080}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05539C6A-AFD7-4A48-BD4F-1EF6FDAE1080}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05539C6A-AFD7-4A48-BD4F-1EF6FDAE1080}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C25CD4CB-746E-4609-A874-B0497F78E423} = {5F0581E9-5CE6-4743-A969-20AD0267E945}
