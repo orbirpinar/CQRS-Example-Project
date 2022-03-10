@@ -21,41 +21,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
 
-builder.Services.AddMassTransit(x =>
-{
-    x.AddConsumers(typeof(CreateOrderConsumer).Assembly);
-    x.AddConsumers(typeof(UpdateOrderConsumer).Assembly);
-    x.AddConsumers(typeof(AttachProductConsumer).Assembly);
-    x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
-    {
-        cfg.Host(new Uri("rabbitmq://localhost"), h =>
-        {
-            h.Username("guest");
-            h.Password("guest");
-        });
-        cfg.ReceiveEndpoint("orderCreated", ep =>
-        {
-            ep.PrefetchCount = 16;
-            ep.UseMessageRetry(r => r.Interval(2, 100));
-            ep.ConfigureConsumer<CreateOrderConsumer>(provider);
-        });
-        
-        cfg.ReceiveEndpoint("orderUpdated", ep =>
-        {
-            ep.PrefetchCount = 16;
-            ep.UseMessageRetry(r => r.Interval(2, 100));
-            ep.ConfigureConsumer<UpdateOrderConsumer>(provider);
-        });
-        
-        cfg.ReceiveEndpoint("productAttached", ep =>
-        {
-            ep.PrefetchCount = 16;
-            ep.UseMessageRetry(r => r.Interval(2, 100));
-            ep.ConfigureConsumer<AttachProductConsumer>(provider);
-        });
-    }));
-});
-builder.Services.AddMassTransitHostedService();
+builder.Services.AddRabbitMq(builder.Configuration);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -74,7 +40,7 @@ builder.Services.AddScoped<IOrderWriteRepository, OrderWriteRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() ||  app.Environment.IsEnvironment("Docker"))
 {
     app.UseSwagger();
     app.UseSwaggerUI();

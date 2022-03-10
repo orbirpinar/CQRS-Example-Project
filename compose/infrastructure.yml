@@ -1,0 +1,46 @@
+version: '3.7'
+services:
+  mongodb:
+    container_name: read_db
+    image: mongo:latest
+    networks:
+      - easycargo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data_container:/data/db
+
+  postgres:
+    container_name: write_db
+    image: postgres:14
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-secret}
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - easycargo
+    restart: unless-stopped
+
+  rabbitmq:
+    image: rabbitmq:3.9.13-management-alpine
+    container_name: rabbitmq
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    networks: 
+      - easycargo
+
+volumes:
+  mongodb_data_container:
+  postgres:
+
+networks:
+  easycargo:
+    name: easycargo

@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  command-service:
+    container_name: easycargo_command
+    build:
+      context: ../
+      dockerfile: ./EasyCargo.Api.Commands/Dockerfile
+    restart: unless-stopped
+    ports:
+      - 5000:80
+    networks:
+      - easycargo
+  query-service:
+    container_name: easycargo_query
+    build:
+      context: ../
+      dockerfile: ./EasyCargo.Api.Queries/Dockerfile
+    restart: unless-stopped
+    ports:
+      - 5001:80
+    networks:
+      - easycargo
+  api-gateway:
+    container_name: easycargo_api_gateway
+    build:
+      context: ../
+      dockerfile: ./EasyCargo.ApiGateway/Dockerfile
+    restart: unless-stopped
+    ports:
+      - 5002:80
+    networks:
+      - easycargo
+
+networks:
+  easycargo:
+    name: easycargo
+    external: true
+

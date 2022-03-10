@@ -16,5 +16,7 @@ RUN dotnet publish "EasyCargo.Api.Queries.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
+ENV ASPNETCORE_URLS http://*:80
+ENV ASPNETCORE_ENVIRONMENT Docker
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "EasyCargo.Api.Queries.dll"]
